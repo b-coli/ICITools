@@ -1,0 +1,37 @@
+Package: ICITools
+Title: R Implementation of Tools for Calculating the Index of Cell Identity
+Version: 0.0.1.0
+Authors@R: 
+    person(given = "Benjamin",
+           family = "Cole",
+           role = c("aut", "cre"),
+           email = "bcole.2230@gmail.com",
+           comment = c(ORCID = "0000-0001-9652-624X"))
+Description: ICITools is an implementation of the method for computation of a 
+    Specificity Score table given cell-type specific gene expression data. 
+    ICItools also contains functions that implement the computaiton of the Index 
+    of Cell Identity to identify the most likely cell type of a gene expression 
+    profile. The two computationally intensive steps implemented by this package 
+    (compute_spec_table and compute_ici_scores) are compatible with the 
+    furrr::future_map function, enabling parallelization for multicore machines. 
+    The methods in this package were originally developed and described by 
+    Efroni, et al. (2016).
+License: file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 2.10)
+RoxygenNote: 6.1.1
+Imports:
+  dplyr,
+  rlang,
+  tibble,
+  readr,
+  stringr,
+  future,
+  furrr,
+  purrr,
+  tidyr,
+  Matrix,
+  plyr
+Suggests: 
+    testthat (>= 2.1.0)

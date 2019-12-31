@@ -1,0 +1,135 @@
+---
+title: "README"
+author: "Benjamin Cole"
+date: "November 25, 2019"
+output:
+  md_document:
+    variant: markdown_github
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# ICITools
+
+ICI Tools is an R package implementation of the cell type classification method described in Birnbaum, et al. (2011) and Efroni, et al. (2015). The package implements the computation of a Specificity Score table given a matrix of cell-type specific gene expression data. The package also implements the computation of an Index of Cell Identity score (ICI score) given the specificity score table and new gene expression data.
+
+## Installation
+
+To install from github:
+
+```
+devtools::install_github("b-coli/ICITools")
+```
+
+## Computing Spec Table
+
+To build a specificity score table using ICITools, you must first create an expression data frame, minimally containing 4 columns:
+
+* Locus (the gene name)
+* Cell_Type (which cell type for this gene in this record)
+* Sample_Name (which sample the expression value came from, can support multiple samples per cell type)
+* Expression (the normalized expression value)
+
+```{r}
+library(ICITools)
+expression_data <- test_spec
+head(expression_data)
+```
+
+A spec table can be computed by running the function, `compute_spec_table()` with default parameters:
+
+```{r}
+compute_spec_table(expression_data = expression_data)
+```
+
+This will run the spec score computation using the binning and mean expression computation outlined in Efroni, et al. (2015). To supply your own binning method, define this method as a function, and pass the function into the `bin_method` argument. Note, the function definition must include the `...` parameter to allow for other custom functions in the `compute_spec_table` function. 
+
+If a custom bin method is defined, you must also define a custom method to compute expression mean (since the "Efroni" method uses the empirically determined bin size for this). Defining a custom mean function is the same as a custom bin function:
+
+```{r}
+simple_bin <- function(expression_data, n_bins = 10, ...) {
+  bins <- cut(expression_data$Expression, n_bins, labels = FALSE)
+  new_expression_data <- dplyr::mutate(expression_data, bin = bins)
+  return(new_expression_data)
+}
+
+simple_mean <- function(expression_data, ...) {
+  means_raw <- tapply(expression_data$Expression, expression_data$Cell_Type, mean)
+  means <- tibble::enframe(means_raw, "Cell_Type", "mean_expr")
+  return(means)
+}
+
+spec_table <- compute_spec_table(expression_data = expression_data, 
+                   bin_method = simple_bin, 
+                   mean_method = simple_mean, 
+                   n_bins = 10)
+head(spec_table)
+```
+
+The resulting spec table contains spec scores for all loci for all cell types provided. This can be used to compute ICI scores for new data. 
+
+## Computing ICI scores
+
+To compute ICI scores for a new dataset, this dataset must be in a format where each expression profile is an individual column in a data frame, with one column named, "Locus".
+
+```{r}
+expression_data <- test_ici
+head(expression_data)
+```
+
+Then, use the function, `compute_ici_scores`. You may specify whether you want significance scores calculated, the amount of information for each cell type (to standardize the amount of specificity conferred by a variable number of markers for each cell type), the number of permutations (for significance computation), and the minimum spec score to be considered a "marker" for each gene.
+
+```{r}
+ici_scores <- compute_ici_scores(expression_data = expression_data, 
+                   spec_table = spec_table, 
+                   sig = TRUE, 
+                   n_iterations = 1000, 
+                   information_level = 20, 
+                   min_spec_score = 0.15)
+head(ici_scores)
+```
+
+## Parallelization
+
+This package utilizes the `future` implementation of parallelization for most computationally intensive functions. To enable parallelization, simply call the `future::plan()` function, specifying the number of processors to use. This can consume a significant amount of memory, especially if evaluating a large number of datasets.
+
+```{r, results='hide'}
+## Time without parallel processing
+future::plan(strategy = "sequential")
+time <- Sys.time()
+ici_scores <- compute_ici_scores(expression_data, spec_table = spec_table, sig = TRUE, n_iterations = 5000)
+Sys.time() - time
+
+## Time using 2 processors:
+future::plan(strategy = "multiprocess", workers = 2)
+time <- Sys.time()
+ici_scores <- compute_ici_scores(expression_data, spec_table = spec_table, sig = TRUE, n_iterations = 5000)
+Sys.time() - time
+
+```
+
+## Optimization
+
+The optimization functions to find an information score that has high signal and low variance, originally outlined in Efroni, et al. (2015), are also available in this package. Here, you can generate ICI scores across a broad range of information scores, specifying a minimum spec score. Additionally, you have the option of sub-sampling within your `expression_data` dataset to speed up optimization (default 100 samples)
+
+```{r, results='hide'}
+library(dplyr)
+library(ggplot2)
+info <- gather_information_level_data(expression_data, 
+                                      spec_table = spec_table, 
+                                      information_range = seq(0, 5, 0.05), 
+                                      min_spec_score = 0.15, 
+                                      n_samples = 10)
+
+ici_signal <- extract_signal_from_info_data(info)
+ici_var <- extract_var_from_info_data(info)
+
+info_summary <- dplyr::inner_join(ici_var, ici_signal)
+
+head(info_summary)
+```
+
