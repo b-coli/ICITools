@@ -44,7 +44,7 @@ efroni_mean <- function(expression_data) {
 #'   \item Cell_Type (the cell type from which the expression data came from)
 #' }
 #'
-#' @param l integer, the number of cuts to perform when binning expression values (see Efroni, et al., 2016)
+#' @param l integer, the number of cuts to perform when binning expression values (see Efroni, et al., 2015)
 #' @param u integer, the maximum bin to consider as a background bin (0 < u < l)
 #' @param use_original logical, whether to use the original method of computing
 #' background bins (ignores minimum values). FALSE by default.

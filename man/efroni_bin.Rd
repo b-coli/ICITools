@@ -16,7 +16,7 @@ columns for a single locus
   \item Cell_Type (the cell type from which the expression data came from)
 }}
 
-\item{l}{integer, the number of cuts to perform when binning expression values (see Efroni, et al., 2016)}
+\item{l}{integer, the number of cuts to perform when binning expression values (see Efroni, et al., 2015)}
 
 \item{u}{integer, the maximum bin to consider as a background bin (0 < u < l)}
 

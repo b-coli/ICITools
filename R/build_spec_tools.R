@@ -2,7 +2,7 @@
 #'
 #' @description This function implements the Index of Cell Identity speficiation
 #' table computation algorithm developed by Idan Efroni and colleagues (Efroni,
-#' et al., 2016). This package takes advantage of the \code{furrr::future_map}
+#' et al., 2015). This package takes advantage of the \code{furrr::future_map}
 #' utility, which enables parallelization on multicore machines. To enable this
 #' functionality, you must specify,
 #' \code{future::plan(strategy = "multisession")} command prior to executing
