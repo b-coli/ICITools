@@ -1,7 +1,7 @@
 ICITools
 ========
 
-ICI Tools is an R package implementation of the cell type classification method described in Birnbaum, et al. (2011) and Efroni, et al. (2016). The package implements the computation of a Specificity Score table given a matrix of cell-type specific gene expression data. The package also implements the computation of an Index of Cell Identity score (ICI score) given the specificity score table and new gene expression data.
+ICI Tools is an R package implementation of the cell type classification method described in Birnbaum, et al. (2011) and Efroni, et al. (2015). The package implements the computation of a Specificity Score table given a matrix of cell-type specific gene expression data. The package also implements the computation of an Index of Cell Identity score (ICI score) given the specificity score table and new gene expression data.
 
 Installation
 ------------
