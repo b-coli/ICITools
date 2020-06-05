@@ -1,6 +1,6 @@
 Package: ICITools
 Title: R Implementation of Tools for Calculating the Index of Cell Identity
-Version: 0.0.1.0
+Version: 0.0.1
 Authors@R: 
     person(given = "Benjamin",
            family = "Cole",
