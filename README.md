@@ -1,7 +1,7 @@
 ICITools
 ========
 
-ICI Tools is an R package implementation of the cell type classification method described in Birnbaum, et al. (2011) and Efroni, et al. (2016). The package implements the computation of a Specificity Score table given a matrix of cell-type specific gene expression data. The package also implements the computation of an Index of Cell Identity score (ICI score) given the specificity score table and new gene expression data.
+ICI Tools is an R package implementation of the cell type classification method described in Birnbaum, et al. (2011) and Efroni, et al. (2015). The package implements the computation of a Specificity Score table given a matrix of cell-type specific gene expression data. The package also implements the computation of an Index of Cell Identity score (ICI score) given the specificity score table and new gene expression data.
 
 Installation
 ------------
@@ -57,7 +57,7 @@ compute_spec_table(expression_data = expression_data)
     ## 10 A          0        0.102     0.539      0.0551 locus_10
     ## # ... with 116 more rows
 
-This will run the spec score computation using the binning and mean expression computation outlined in Efroni, et al. (2016). To supply your own binning method, define this method as a function, and pass the function into the `bin_method` argument. Note, the function definition must include the `...` parameter to allow for other custom functions in the `compute_spec_table` function.
+This will run the spec score computation using the binning and mean expression computation outlined in Efroni, et al. (2015). To supply your own binning method, define this method as a function, and pass the function into the `bin_method` argument. Note, the function definition must include the `...` parameter to allow for other custom functions in the `compute_spec_table` function.
 
 If a custom bin method is defined, you must also define a custom method to compute expression mean (since the "Efroni" method uses the empirically determined bin size for this). Defining a custom mean function is the same as a custom bin function:
 
