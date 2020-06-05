@@ -28,3 +28,11 @@ that are greater than or equal to the "real" ici score.
 \description{
 Compute p-values for a single expression/cell type profile (Internal)
 }
+\references{
+Ifroni, E., Ip, PL., Nawy, T., Mello, A., Birnbaum, KD. 2015. "Quantification
+of cell identity from single-cell gene expression profiles". Genome Biology
+16(9)
+
+Birnbaum, KD. and Kussell, E. 2011. "Measuring cell identity in noisy
+biological systems". Nucl. Acids. Res. 39(21)
+}

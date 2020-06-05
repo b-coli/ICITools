@@ -24,6 +24,15 @@
 #'   \item is_marker whether the cumulative sum for that locus is below the
 #'   information threshold specified by information_level
 #' }
+#' 
+#' @references
+#' Ifroni, E., Ip, PL., Nawy, T., Mello, A., Birnbaum, KD. 2015. "Quantification
+#' of cell identity from single-cell gene expression profiles". Genome Biology
+#' 16(9)
+#'
+#' Birnbaum, KD. and Kussell, E. 2011. "Measuring cell identity in noisy
+#' biological systems". Nucl. Acids. Res. 39(21)
+#'
 #' @importFrom dplyr "%>%"
 #' @importFrom rlang .data
 find_ici_markers <- function(spec_table, information_level, min_spec_score = 0.15, transform_spec = TRUE) {
@@ -71,6 +80,15 @@ compute_ici_score_for_cell_type <- function(marker_expression, marker_spec) {
 #'
 #' @return numeric, raw p-value indicating the number of randomized ici scores
 #' that are greater than or equal to the "real" ici score.
+#' 
+#' @references
+#' Ifroni, E., Ip, PL., Nawy, T., Mello, A., Birnbaum, KD. 2015. "Quantification
+#' of cell identity from single-cell gene expression profiles". Genome Biology
+#' 16(9)
+#'
+#' Birnbaum, KD. and Kussell, E. 2011. "Measuring cell identity in noisy
+#' biological systems". Nucl. Acids. Res. 39(21)
+#'
 #'
 #' @importFrom dplyr "%>%"
 compute_ici_pval <- function(cell_type_data, ici_score = NULL, n_iterations = 1000) {
@@ -118,6 +136,14 @@ compute_ici_pval <- function(cell_type_data, ici_score = NULL, n_iterations = 10
 #'   \item ici_score the ici score for that cell/cell-type
 #'   \item p-val the p-value associated with the ici-score, NA if sig = FALSE.
 #'  }
+#'  
+#' @references
+#' Ifroni, E., Ip, PL., Nawy, T., Mello, A., Birnbaum, KD. 2015. "Quantification
+#' of cell identity from single-cell gene expression profiles". Genome Biology
+#' 16(9)
+#'
+#' Birnbaum, KD. and Kussell, E. 2011. "Measuring cell identity in noisy
+#' biological systems". Nucl. Acids. Res. 39(21)
 #'
 #' @importFrom dplyr "%>%"
 #' @importFrom rlang .data
@@ -161,6 +187,14 @@ compute_ici_for_cell <- function(expression_and_marker_data, sig = FALSE, n_iter
 #' @return a data frame containing ici values and p-values for all cell/cell-type combinations.
 #' @example inst/examples/compute_ici_scores_examples.R
 #' @export
+#'
+#' @references
+#' Ifroni, E., Ip, PL., Nawy, T., Mello, A., Birnbaum, KD. 2015. "Quantification
+#' of cell identity from single-cell gene expression profiles". Genome Biology
+#' 16(9)
+#'
+#' Birnbaum, KD. and Kussell, E. 2011. "Measuring cell identity in noisy
+#' biological systems". Nucl. Acids. Res. 39(21)
 #'
 #' @importFrom stats "p.adjust"
 #' @importFrom dplyr "%>%"

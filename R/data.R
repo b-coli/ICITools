@@ -15,6 +15,10 @@
 #' `bin_func <- function(df) dplyr::mutate(df, bin = cut(Expression, 3))`
 #' as the bin_method, and null string, "", as the mean_method to
 #' compute_spec_table.
+#' 
+#' @references
+#' Birnbaum, KD. and Kussell, E. 2011. "Measuring cell identity in noisy
+#' biological systems". Nucl. Acids. Res. 39(21)
 "test_birnbaum"
 
 #' Random toy dataset simulating marker loci

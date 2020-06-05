@@ -35,3 +35,11 @@ a data.frame with three columns:
 \description{
 Compute ici score for all cell types for a given cell's expression profile
 }
+\references{
+Ifroni, E., Ip, PL., Nawy, T., Mello, A., Birnbaum, KD. 2015. "Quantification
+of cell identity from single-cell gene expression profiles". Genome Biology
+16(9)
+
+Birnbaum, KD. and Kussell, E. 2011. "Measuring cell identity in noisy
+biological systems". Nucl. Acids. Res. 39(21)
+}

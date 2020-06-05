@@ -161,6 +161,14 @@ efroni_get_background_bin <- function(expression, expression_thresh, l, use_orig
 #'
 #' @return a vector of 50 bin sizes to iterate over.
 #'
+#' @references
+#' Ifroni, E., Ip, PL., Nawy, T., Mello, A., Birnbaum, KD. 2015. "Quantification
+#' of cell identity from single-cell gene expression profiles". Genome Biology
+#' 16(9)
+#'
+#' Birnbaum, KD. and Kussell, E. 2011. "Measuring cell identity in noisy
+#' biological systems". Nucl. Acids. Res. 39(21)
+#'
 efroni_get_binsizes <- function(expression, background_bin, l) {
 
   expression_range <- max(expression)-min(expression)

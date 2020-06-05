@@ -22,3 +22,11 @@ If the number of cuts to test are specified, compute the range
 of possible bin sizes as close to the transition to "background" expression
 as possible. If the number of cuts is not specified, attempts to optimize the binsize across the whole range of gene expression values (50 evenly spaced binsizes).
 }
+\references{
+Ifroni, E., Ip, PL., Nawy, T., Mello, A., Birnbaum, KD. 2015. "Quantification
+of cell identity from single-cell gene expression profiles". Genome Biology
+16(9)
+
+Birnbaum, KD. and Kussell, E. 2011. "Measuring cell identity in noisy
+biological systems". Nucl. Acids. Res. 39(21)
+}

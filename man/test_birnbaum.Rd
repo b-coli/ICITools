@@ -25,4 +25,8 @@ test_birnbaum
 \description{
 Toy dataset adapted from Birnbaum, et al., 2011
 }
+\references{
+Birnbaum, KD. and Kussell, E. 2011. "Measuring cell identity in noisy
+biological systems". Nucl. Acids. Res. 39(21)
+}
 \keyword{datasets}

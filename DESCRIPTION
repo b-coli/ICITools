@@ -15,7 +15,7 @@ Description: ICITools is an implementation of the method for computation of a
     (compute_spec_table and compute_ici_scores) are compatible with the 
     furrr::future_map function, enabling parallelization for multicore machines. 
     The methods in this package were originally developed and described by 
-    Efroni, et al. (2016).
+    Efroni, et al. (2015).
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true

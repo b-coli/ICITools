@@ -51,3 +51,11 @@ ici_scores <- compute_ici_scores(expression_data = test_ici,
                                  information_level = 10,
                                  min_spec_score = 0)
 }
+\references{
+Ifroni, E., Ip, PL., Nawy, T., Mello, A., Birnbaum, KD. 2015. "Quantification
+of cell identity from single-cell gene expression profiles". Genome Biology
+16(9)
+
+Birnbaum, KD. and Kussell, E. 2011. "Measuring cell identity in noisy
+biological systems". Nucl. Acids. Res. 39(21)
+}
