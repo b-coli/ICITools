@@ -224,12 +224,13 @@ compute_ici_scores <- function(
     Matrix::Matrix(as.matrix(df), sparse = T)})
 
   required_pkgs <- c("Matrix")
-  f_opts <- furrr::future_options(packages = required_pkgs)
+  f_opts <- furrr::future_options(packages = required_pkgs, seed = T)
 
   ici_scores <- furrr::future_map_dfr(
     .x = expression_data_list,
     .options = f_opts,
     .progress = TRUE,
+    
     .f = function(cell_data) {
       cell_name <- colnames(cell_data)
       cell_expression_data <- as.matrix(cell_data) %>%
